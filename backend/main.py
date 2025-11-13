@@ -2,6 +2,8 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from api import router as api_router
+from utils.tts_api import router as tts_router
+
 
 def create_app():
     app = FastAPI(title="Code2Video - Backend (Phase 1)")
@@ -13,6 +15,8 @@ def create_app():
         allow_headers=["*"],
     )
     app.include_router(api_router, prefix="/api")
+    app.include_router(tts_router, prefix="/api")
+
     return app
 
 app = create_app()
